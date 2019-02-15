@@ -1,5 +1,6 @@
 # Jetbrains IntelliJ Idea
 .idea
+*.iml
 
 # Linux
 # backup files
