@@ -10,14 +10,14 @@ public class BunnyList
 
     public BunnyList()
     {
-        bunnyList.add(new Bunny("BarnBarn", 5.1));
-        bunnyList.add(new Bunny("Cinnamon", 4.3));
-        bunnyList.add(new Bunny("Jessica", 4.7));
+        bunnyList.add(new Bunny("BarnBarn", 5.5));
+        bunnyList.add(new Bunny("Cinnamon", 4.7));
+        bunnyList.add(new Bunny("Jessica",  5.0));
     }
 
     public Bunny findBunny(CheckBunny tester)
     {
-        for (Bunny b:bunnyList)
+        for (Bunny b : bunnyList)
         {
             if (tester.test(b))
             {
@@ -29,9 +29,9 @@ public class BunnyList
 
     public ArrayList<Bunny> findBunnies(CheckBunny tester)
     {
-        ArrayList<Bunny> tempBunnyList = new ArrayList<Bunny>();
+        ArrayList<Bunny> tempBunnyList = new ArrayList<>();
 
-        for (Bunny b:bunnyList)
+        for (Bunny b: bunnyList)
         {
             if (tester.test(b))
             {

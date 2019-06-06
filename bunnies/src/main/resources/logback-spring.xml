@@ -3,21 +3,21 @@
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%25.-25class] [%thread] [%line] [%-5level] %m%n</pattern>
+            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.SSS}] [%25.25class] [%thread] [%line] [%-5level] %m%n</pattern>
         </encoder>
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/var/tmp/mylog.log</File>
+        <File>/tmp/var/mylog.log</File>
         <append>true</append>
         <encoder>
-            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
+            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.SSS}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 
             <!-- rollover daily -->
-            <fileNamePattern>/var/tmp/mylog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
+            <fileNamePattern>/tmp/var/mylog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
 
             <!-- keep 30 days' worth of history -->
@@ -27,16 +27,16 @@
     </appender>
 
     <appender name="TOMCAT" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/var/tmp/myTomcatLog.log</File>
+        <File>/tmp/var/myTomcatLog.log</File>
         <append>true</append>
         <encoder>
-            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
+            <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.sss}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 
             <!-- rollover daily -->
-            <fileNamePattern>/var/tmp/myTomcatLog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
+            <fileNamePattern>/tmp/var/myTomcatLog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
 
             <!-- keep 30 days' worth of history -->
@@ -45,31 +45,32 @@
         </rollingPolicy>
     </appender>
 
-    <root level="INFO">
+    <root level="INFO" additivity="false">
+        <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <logger name="com.lambdaschool.bunnies" level="TRACE">
-        <appender-ref ref="STDOUT"/>
-    </logger>
 
-    <logger name="org.springframework.boot" level="OFF">
+    <logger name="org.springframework.boot" level="OFF" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="org.apache.catalina" level="OFF">
+    <logger name="org.apache.catalina" level="OFF" additivity="false">
         <appender-ref ref="TOMCAT" />
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="org.apache.coyote" level="OFF">
+    <logger name="org.apache.coyote" level="OFF" additivity="false">
         <appender-ref ref="TOMCAT" />
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="org.apache.tomcat" level="OFF">
+    <logger name="org.apache.tomcat" level="OFF" additivity="false">
         <appender-ref ref="TOMCAT" />
         <appender-ref ref="STDOUT" />
     </logger>
 
+    <logger name="com.lambdaschool" level="TRACE" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
 </configuration>

@@ -10,9 +10,10 @@
         <th>Weight</th>
     </tr>
     <tr th:each="bunny : ${bunnyList}">
-        <td th:text="${bunny.name}"/>
-        <td th:text="${bunny.weight}"/>
+        <td th:text="${bunny.name}">Name</td>
+        <td th:text="${bunny.weight}">Weight</td>
     </tr>
 </table>
+<strong><a href="/">Click here to go back</a></strong>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lambdaschool</groupId>
@@ -13,7 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>bunnies</name>
     <description>Demo project for Spring Boot</description>
-    <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
@@ -22,21 +21,22 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,20 +58,10 @@
             <version>1.7.26</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
             <!-- Heroku Maven Plugin Configuration -->
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
@@ -81,7 +71,7 @@
                     <appName>jrmmba-bunnies</appName>
                     <includeTarget>false</includeTarget>
                     <includes>
-<!--   For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->
+                        <!--   For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->
                         <include>${project.build.directory}/${project.build.finalName}.jar</include>
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
@@ -90,7 +80,14 @@
                     </processTypes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
+
+        <finalName>${project.artifactId}</finalName>
     </build>
 
 </project>

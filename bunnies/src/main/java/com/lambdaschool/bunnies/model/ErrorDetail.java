@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 // adapted from https://tools.ietf.org/html/rfc7807
 public class ErrorDetail
 {
@@ -55,7 +56,7 @@ public class ErrorDetail
 
     public void setTimestamp(Long timestamp)
     {
-        this.timestamp = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS").format(new Date(timestamp));
+        this.timestamp = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z").format(new Date(timestamp));
     }
 
     public String getDeveloperMessage()

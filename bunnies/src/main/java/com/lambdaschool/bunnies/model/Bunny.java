@@ -1,10 +1,15 @@
 package com.lambdaschool.bunnies.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Bunny
 {
-    private static AtomicLong counter = new AtomicLong();
+    private static final Logger logger = LoggerFactory.getLogger(Bunny.class);
+
+    private static final AtomicLong counter = new AtomicLong();
     private long id;
     private String name;
     private double weight;
@@ -18,16 +23,21 @@ public class Bunny
         this.id = counter.incrementAndGet();
         this.name = name;
         this.weight = weight;
+
+        logger.info("We created a bunny");
+        logger.debug("Yes we created a bunny with id " + this.id);
+    }
+
+    public Bunny(Bunny toClone)
+    {
+        this.id = toClone.getId();
+        this.name = toClone.getName();
+        this.weight = toClone.getWeight();
     }
 
     public long getId()
     {
         return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
     }
 
     public String getName()
